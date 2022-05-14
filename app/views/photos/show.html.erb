@@ -1,0 +1,36 @@
+<div class="container bg-white p-5">
+  <%= link_to 'Back to gallery', gallery_path(id: params[:gallery_id]) %>
+  <%= link_to 'Edit', edit_gallery_photo_path(gallery_id: params[:gallery_id], id: @photo.id), class: 'float-right' %>
+  
+  <div class="row">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Info</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th scope="row">Gallery</th>
+          <td><%= link_to @photo.gallery.name, gallery_photo_path(gallery_id: params[:gallery_id]) %></td>
+        </tr>
+        <tr>
+          <th scope="row">Name</th>
+          <td><%= @photo.name %></td>
+        </tr>
+        <tr>
+          <th scope="row">Short description</th>
+          <td><%= @photo.short_description %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="col-md-12">
+      <h5>Photo</h5>
+    </div>
+
+    <%= image_tag @photo.image.url %>
+  </div>
+</div>

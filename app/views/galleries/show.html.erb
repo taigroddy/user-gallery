@@ -1,0 +1,31 @@
+<div class="container bg-white p-5">
+  <%= link_to 'Back to list', galleries_path %>
+
+  <h1>
+    Photos in gallery <span class="text-info"><%= @gallery.name %></span>
+    <span class="link-in-title"><%= link_to 'Add new photo', new_gallery_photo_path(@gallery) %></span>
+  </h1>
+
+  <div class="row">
+    <% @photos.each do |photo| %>
+      <div class="col-md-3 photo">
+        <div class="card" style="width: 100%">
+          <div class="card-body">
+            <a href="<%= photo.image.url %>" target="_blank">
+              <div class="img-box" style="background-image: url('<%= photo.image.url %>')"></div>
+            </a>
+
+            <h5 class="card-title"><%= photo.name %></h5>
+            <p class="card-text"><%= photo.short_description %></p>
+
+            <div class="action-links">
+              <%= link_to 'Details', gallery_photo_path(gallery_id: @gallery.id, id: photo.id) %> |
+              <%= link_to 'Edit', edit_gallery_photo_path(gallery_id: @gallery.id, id: photo.id) %> |
+              <%= link_to 'Destroy', gallery_photo_path(gallery_id: @gallery.id, id: photo.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

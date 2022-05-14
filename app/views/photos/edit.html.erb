@@ -1,0 +1,12 @@
+<div class="form-center">
+  <div class="form-center-content">
+    <div class="w-30">
+      <h1>Editing Photo</h1>
+
+      <%= render 'form', photo: @photo %>
+
+      <%= link_to 'Show', gallery_photo_path(gallery_id: params[:gallery_id], id: @photo.id) %> |
+      <%= link_to 'Back', gallery_path(params[:gallery_id]) %>
+    </div>
+  </div>
+</div>

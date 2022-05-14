@@ -1,0 +1,37 @@
+<%= simple_form_for(@photo, url: url_submit(@photo, params[:gallery_id])) do |f| %>
+  <%= f.error_notification %>
+  <% f.object.errors.full_messages.each do |msg| %>
+    <p class="text-danger">- <%= msg %></p>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.input :name, 
+                required: true,
+                autofocus: true,
+                input_html: { class: "form-control" } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :image,
+                as: :file,
+                required: true,
+                input_html: { class: "form-control" } %>
+  </div>
+
+  <div class="form-group">
+    <label><%= :shooting_date.to_s.humanize %> </label>
+    <%= f.datetime_field :shooting_date, 
+                required: false,
+                class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :short_description, 
+                required: false,
+                input_html: { class: "form-control" } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

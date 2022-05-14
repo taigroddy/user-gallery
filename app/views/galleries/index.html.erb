@@ -1,0 +1,24 @@
+<div class="container bg-white pt-5 pb-5">
+  <h1>
+    Galleries 
+    <span class="link-in-title"><%= link_to 'New Gallery', new_gallery_path %></span>
+  </h1>
+
+  <div class="row">
+    <% @galleries.each do |gallery| %>
+      <div class="col-md-3">
+        <div class="card" style="width: 100%">
+          <div class="card-body">
+            <h5 class="card-title"><%= gallery.name %></h5>
+            <p class="card-text"><%= gallery.short_description %></p>
+            <div class="action-links">
+              <%= link_to 'View photos', gallery %> |
+              <%= link_to 'Edit', edit_gallery_path(gallery) %> |
+              <%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

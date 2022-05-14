@@ -1,0 +1,21 @@
+inherit_from: .rubocop_todo.yml
+
+Style/SymbolArray:
+  EnforcedStyle: percent
+
+Style/Documentation:
+  Exclude: 
+    - app/controllers/*
+    - app/helpers/*
+    - app/models/*
+    - db/**/*
+    - config/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - db/**/*
+    - spec/**/*
+
+Layout/LineLength:
+  Max: 120
+  IgnoredPatterns: ['(\A|\s)#']
