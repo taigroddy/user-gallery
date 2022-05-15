@@ -12,7 +12,7 @@ development:
   database: <%= ENV['DATABASE_NAME'] || 'user-gallery_development' %>
 test:
   <<: *default
-  database: <%= ENV['DATABASE_NAME'] || 'user-gallery_test' %>
+  database: <%= ENV['DATABASE_TEST_NAME'] || 'user-gallery_test' %>
   pool: 5
 dev:
   <<: *default
