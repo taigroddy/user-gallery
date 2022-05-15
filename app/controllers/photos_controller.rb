@@ -61,7 +61,12 @@ class PhotosController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def photo_params
-    params.fetch(:photo, {}).permit(:name, :shooting_date, :short_description, :image)
-          .merge({ gallery_id: params[:gallery_id] })
+    result = params.fetch(:photo) { {} }
+                   .permit(:name, :shooting_date, :short_description, :image)
+                   .merge({ gallery_id: params[:gallery_id] })
+
+    result.delete(:image) if result[:image].nil?
+
+    result
   end
 end

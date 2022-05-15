@@ -61,6 +61,6 @@ class GalleriesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def gallery_params
-    params.fetch(:gallery, {}).permit(:name, :short_description).merge({ user_id: current_user.id })
+    params.fetch(:gallery) { {} }.permit(:name, :short_description).merge({ user_id: current_user.id })
   end
 end
