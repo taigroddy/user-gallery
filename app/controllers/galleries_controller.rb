@@ -26,10 +26,8 @@ class GalleriesController < ApplicationController
     respond_to do |format|
       if @gallery.save
         format.html { redirect_to gallery_url(@gallery), notice: 'Gallery was successfully created.' }
-        format.json { render :show, status: :created, location: @gallery }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @gallery.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -39,10 +37,8 @@ class GalleriesController < ApplicationController
     respond_to do |format|
       if @gallery.update(gallery_params)
         format.html { redirect_to gallery_url(@gallery), notice: 'Gallery was successfully updated.' }
-        format.json { render :show, status: :ok, location: @gallery }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @gallery.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -53,7 +49,6 @@ class GalleriesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to galleries_url, notice: 'Gallery was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

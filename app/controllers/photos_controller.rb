@@ -18,11 +18,11 @@ class PhotosController < ApplicationController
 
     respond_to do |format|
       if @photo.save
-        format.html { redirect_to gallery_url(params[:gallery_id]), notice: 'Photo was successfully created.' }
-        format.json { render :show, status: :created, location: @photo }
+        format.html do
+          redirect_to gallery_url(params[:gallery_id]), notice: 'Photo was successfully created.'
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -31,11 +31,12 @@ class PhotosController < ApplicationController
   def update
     respond_to do |format|
       if @photo.update(photo_params)
-        format.html { redirect_to gallery_url(params[:gallery_id]), notice: 'Photo was successfully updated.' }
-        format.json { render :show, status: :ok, location: @photo }
+        format.html do
+          redirect_to gallery_photo_url(gallery_id: params[:gallery_id], id: @photo.id),
+                      notice: 'Photo was successfully updated.'
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -46,7 +47,6 @@ class PhotosController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to gallery_url(params[:gallery_id]), notice: 'Photo was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -54,7 +54,9 @@ class PhotosController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_photo
-    @photo = Photo.find(params[:id])
+    @photo = Photo.find_by(id: params[:id], gallery_id: params[:gallery_id])
+
+    raise ActiveRecord::RecordNotFound if @photo.nil?
   end
 
   # Only allow a list of trusted parameters through.

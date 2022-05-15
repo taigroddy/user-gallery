@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'galleries#index'
 
-  resources :galleries do
+  resources :galleries, format: false do
     resources :photos, except: %i[index]
   end
 
